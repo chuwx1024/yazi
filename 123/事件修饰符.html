@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件修饰符</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: skyblue;
+    }
+    .capture1 {
+      width: 200px;
+      height: 200px;
+      background: orange;
+    }
+    .capture2 {
+      width: 100px;
+      height: 100px;
+      background: purple;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <a href="http://www.baidu.com" @click.prevent="showInfo">阻止默认行为</a>
+    <div class="box" @click="showInfo">
+      <button @click.stop="showInfo2">点我冒泡</button>
+    </div>
+    <button @click.once="showInfo2">点我执行一次</button>
+    <div class="capture1" @click.capture="showCap(1)">
+      1111
+      <div class="capture2"  @click="showCap(2)">
+        2222
+      </div>
+    </div>
+    <div class="box" @click.self="showInfo">
+      <button @click="showInfo2">点我冒泡</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+     const vm = new Vue({
+      el: '.app',
+      methods: {
+        showInfo () {
+          console.log('阻止默认行为')
+        },
+        showInfo2 () {
+          console.log('阻止冒泡')
+        },
+        showCap (value) {
+          console.log(value) // 冒泡: 21 ,buhuo; 12
+        }
+      }
+    })
+
+  </script>
+ 
+  
+</body>
+</html>
