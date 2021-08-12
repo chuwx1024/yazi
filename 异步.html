@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log(1)
+  var ooo = new XMLHttpRequest();
+  ooo.addEventListener('load', function () {
+    // console.log(responseData)
+    console.log(123)
+  })
+  // ooo.open(method, url, true)  
+  ooo.open('get', 'http://jsonplaceholder.typicode.com/posts', true)  
+  ooo.send()
+  console.log(2)
+  function request (url, cb) {
+    var o = new XMLHttpRequest();
+    o.addEventListener('load',function () {
+      console.log(this.responseText)
+      cb()
+    })
+    o.open('get', url, true);
+    o.send()
+  }
+  request('http://jsonplaceholder.typicode.com/posts',function () {
+    console.log('我是会扫')
+  })
+
+  
+  </script>
+  
+</body>
+</html>

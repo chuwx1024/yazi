@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a;
+    // function  getData (cb) {
+    //   var xml = new XMLHttpRequest();
+    //   xml.addEventListener('load', function() {
+    //     this.responseText
+    //     cb(this.responseText)
+    //   })
+    //   xml.open('get', 'http://jsonplaceholder.typicode.com/posts?id=1')
+    //   xml.send()
+    // }
+    // getData(function(data) {
+    //   a = data
+    //   console.log(a)
+    // })
+
+    function request(url) {
+      return new Promise((resolve,reject) => {
+        var o = new XMLHttpRequest();
+        o.addEventListener('load', function () {
+          resolve(this.responseText)
+        })
+        o.open('get',url)
+        o.send()
+      })
+    }
+    request('jsonp哒哒哒哒哒哒多多多多')
+    .then(function (data) {
+      a = data
+      console.log(a)
+    })
+    .catch(err => {
+      console.log('错误从这里走')
+    })
+    .finally( () => {
+      console.log('从这里走过')
+    })
+   
+    // request('http://jsonplaceholder.typicode.com/posts?id=1')
+    // .then(function (data) {
+    //   a = data
+    //   console.log(a)
+    //   return request('http://jsonplaceholder.typicode.com/posts?id=3')
+    // })
+    // .then(function (data) {
+    //   console.log(data+'我是谁')
+    // })
+
+  </script>
+  
+</body>
+</html>

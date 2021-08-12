@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function request (url) {
+      return new Promise( (resolve,reject) => {
+        var xml = new XMLHttpRequest();
+        xml.addEventListener('load', function () {
+          resolve(this.responseText)
+        })
+        xml.addEventListener("error", function () {
+          reject()
+        } )
+        xml.open('get', url)
+        xml.send()
+      })
+    }
+    request('http://jsonplaceholder.typicode.com/posts?id=1')
+    .then(function (data) {
+      console.log(data+ '我成功了')
+      return request('http://jsonplaceholder.typicode.com/posts?id=2')
+    }, function (error) {
+      console.log(error+'我失败了')
+    })
+    .then(data => {
+      console.log(data)
+      return request('http://jsonplaceholder.typicode.com/posts?id=1')
+    })
+    .then(data => {
+      console.log(data)
+    })
+    .then(data => {
+      console.log('普通数据默认上一级返回一个newpromise对象,如果直接返回一个newPromise则不做任何处理')
+    })
+    .then( res => {
+      console.log('我是结束了吗')
+      return new Promise ((resolve, reject) => {
+        resolve('哈哈哈 我是默认的Promise写法')
+      })
+    })
+    .then(data => {
+      console.log(data+'我是上一级默认返回的newPromise')
+    })
+    // request('http://j8888888888hol')
+    // .then(data => {
+    //   console.log(data+'我第二次成功了')
+    // }, function (error) {
+    //   console.log(error+'我第二次失败了')
+    // })
+  </script>
+  
+</body>
+</html>

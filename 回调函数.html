@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var xml = new XMLHttpRequest();
+    // xml.open('get', 'http://jsonplaceholder.typicode.com/posts?id='+2);
+    // xml.send();
+    // xml.onreadystatechange = function () {
+    //   console.log(this.responseText)
+    // }
+    // 封账一下
+    function request (type, url, cb) {
+      var xml = new XMLHttpRequest();
+      xml.open(type, url);
+      xml.send();
+      xml.addEventListener('load', function() {
+        console.log(this.responseText)
+        cb(1223)
+      })
+    }
+    // request('get', 'http://jsonplaceholder.typicode.com/posts?id=2')
+    request('get', 'http://jsonplaceholder.typicode.com/posts?id=1', function (data) {
+      console.log(data)
+      request('get', 'http://jsonplaceholder.typicode.com/posts?id=2', function (data) {
+        console.log(data)
+        request('get','http://jsonplaceholder.typicode.com/posts?id=3',function (){})
+      })
+    })
+    
+
+
+  </script>
+  
+</body>
+</html>

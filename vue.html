@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>
+      <h4>name: {{ name }}</h4>
+      <h4>name: {{ _data.name }}</h4>
+      <hr>
+      <h4>age: {{ age }}</h4>
+      <h4>age: {{ _data.age }}</h4>
+    </p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    let data = {
+      name: '夏天',
+      age: 20
+    }
+    const vm = new Vue({
+      el: '#app',
+      // data: {
+      //   name: '夏天',
+      //   age: 1
+      // }
+      data
+    })
+    console.log(vm)
+    // let number = 19
+    // let person = {
+    //   name: '张三',
+    //   sex: '男'
+    // }
+    // Object.defineProperty(person,'age', {
+    //   // value: number,
+    //   // enumerable: true,// 可枚举,是否能遍历,默认是false
+    //   // writable: true, // 是否能修改,默认false
+    //   // configurable: true, // 是否能删除
+    //   // 当有人读取person的age属性后,get函数就会被调用,且返回值就是age的值
+    //   get: function () {
+    //     console.log('读取值了')
+    //     return number
+    //   },
+    //   // 当有人修改值时,调用,并且会受到具体指
+    //   set: function (value) {
+    //     console.log('有人修改age属性值为',value)
+    //     number = value
+    //   }
+    // })
+ 
+    // console.log(Object.keys(person))
+    // for (let key in person) {
+    //   console.log(person[key])
+    // }
+    // console.log(person)
+    // const vm = new Vue({
+    //   el: '#app',
+    //   data: {
+    //     name: '夏天'
+    //   },
+    //   methods: {
+
+    //   }
+    // })
+    // let obj = {
+    //   x: '我是obj'
+    // }
+    // let obj2 = {
+    //   y: "我是obj2"
+    // }
+    // Object.defineProperty(obj2, "x", {
+    //   get: function () {
+    //     return obj.x
+    //   },
+    //   set: function (value) {
+    //     obj.x = value
+    //   }
+    // })
+    // obj2.x = "我是自己人"
+    // console.log(obj,obj2)
+
+  </script>
+  
+</body>
+</html>

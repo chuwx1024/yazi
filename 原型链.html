@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function Star (name, age) {
+      this.name = name,
+      this.age = age
+      this.say = function () {
+        console.log(this.name)
+      }
+    }
+    var newstar = new Star()
+    console.dir(Star)
+    console.dir(newstar)
+    console.log(Star.prototype === newstar.__proto__)
+    console.log(Star.prototype.constructor)
+    console.log(Star.prototype.__proto__ === Object.prototype)
+    console.log(Star.prototype.__proto__.__proto__)
+  </script>
+  
+</body>
+</html>
