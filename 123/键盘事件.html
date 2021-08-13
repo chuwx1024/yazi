@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- enter回车, delete删除,esc退出space 空格 tab 换行 up,down,left,right -->
+    <input type="text" placeholder="anhuiche提示输入" @keyup.enter="demo">
+    <!-- 如果是两个单词的需要cap-lock -->
+    <input type="text" placeholder="大小写切换键" @keyup.caps-lock="demo">
+
+    <!-- tab 需要keydown使用 -->
+    <input type="text" placeholder="anhuiche提示输入" @keyup.tab="demo">
+
+    <!-- 系统修饰符 ctrl,shift,alt,meta,需要配合别的键共同使用 -->
+    <input type="text" placeholder="shift+enter提示输入" @keyup.shift.enter="demo">
+    <!-- Vue.congig.keyCodes.自定义键名 = 键码 -->
+    <input type="text" placeholder="huiche提示输入" @keyup.huiche="demo">
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    Vue.config.keyCodes.huiche = 13
+    const vm= new Vue({
+      el: '#app',
+      data: {},
+      methods: {
+        demo (e) {
+          console.log(e.key,e.keyCode)
+        }
+      }
+    })
+  </script>
+  
+</body>
+</html>
