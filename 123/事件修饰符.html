@@ -45,7 +45,7 @@
     </div>
     <!-- capture -->
     <button @click.once="showInfo2">点我执行一次</button>
-    <div class="capture1" @click.capture="showCap(1)">
+    <div class="capture1" @click.capture.once="showCap(1)">
       1111
       <div class="capture2"  @click="showCap(2)">
         2222
