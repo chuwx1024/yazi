@@ -30,6 +30,7 @@
       },
       computed: {
         // get 初次调用的时候触发,所依赖的数据发生改变的时候调用
+        // 底层借助了Object.defineProperty的getter 和setter
         // computed只用于获取数据,更改数据用methods,所以set可以不用写,然后shegnlue为
         // getx: {
         //   get: function () {
