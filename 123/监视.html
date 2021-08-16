@@ -10,14 +10,19 @@
   <div id="app">
     <h4>天气 {{ isHot ? '炎热' : '凉快' }}</h4>
     <h4>天气 {{ todayWether }}</h4>
-    <button @click="changeWether">切换天气</button>
+    <button @click="changeWether">切换天气</button><hr>
+    {{ number.a }}--- {{number.b}}
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script>
     const vm = new Vue({
       el: '#app',
       data: {
-        isHot: true
+        isHot: true,
+        number: {
+          a: 1,
+          b: 2
+        }
       },
       methods: {
         changeWether () {
@@ -30,20 +35,38 @@
         }
       },
       watch: {
-        // isHot: {
-        //   immediate: true, // 页面刷新的时候就执行
-        //   handler (newValue, oldValue) {
-        //     console.log(newValue,oldValue)
-        //   }
-        // }
+        isHot: {
+          // immediate: true, // 页面刷新的时候就执行
+          handler (newValue, oldValue) {
+            setTimeout( () => {
+              console.log(newValue, oldValue)
+            },1000)
+            // console.log(newValue,oldValue)
+          }
+        }, 
+        // 监视多层结构中某个属性的变化
+        'number.b': {
+          immediate: true,
+          handler (a, b) {
+            console.log(a, b)
+          },
+          deep:true
+        },
+        'number': {
+          deep: true,
+          handler (a,b) {
+            console.log(a,b)
+          }
+        }
+
       }
     })
-    vm.$watch('isHot', {
-      immediate: true, // 页面刷新的时候就执行
-      handler (newValue, oldValue) {
-        console.log(newValue,oldValue)
-      }
-    })
+    // vm.$watch('isHot', {
+    //   immediate: true, // 页面刷新的时候就执行
+    //   handler (newValue, oldValue) {
+    //     console.log(newValue,oldValue)
+    //   }
+    // })
 
   </script>
   
