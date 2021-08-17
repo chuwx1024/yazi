@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="app">
+    <h5>列表渲染 in--of 都可以</h5>
+    <li v-for="(item,index) in person">{{item.age }} --- {{item.age }}---{{item.id }}</li>
+    <li v-for="(item,index) of person">{{item.age }} --- {{item.age }}---{{item.id }}</li>
+    <li v-for="(value,key) in zhang ">{{value}}---{{key}}</li>
+    <li v-for="(cha,index) in str ">{{cha}}---{{index}}</li>
+    <li v-for="item in 5 ">{{item}}</li>
+    <hr>
+    <h5>key的原理</h5>
+    <button @click="addPerson">添加人员</button>
+    <li v-for="(item,index) in person" :key="index">
+      {{item.age }} --- {{item.age }}---{{item.id }}
+      <input type="text">
+    </li>
+    <hr>
+    <h5>列表过滤</h5>
+    <input type="text" placeholder="输入关键字" v-model="keyWord">
+    <button @click="number = 1">升序</button>
+    <button @click="number = 2">降序</button>
+    <button @click="number = 0">原数组</button>
+    <li v-for="item in fstars">
+      {{item.name }} --- {{item.age }}---{{item.id }}
+    </li>
+  </div>
+ <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: '.app',
+      data: {
+        person: [
+          {id: '000',name: '张三',age: 18},
+          {id: '001',name: '王五',age: 19}
+        ],
+        zhang: {
+          hobby: '唱歌',
+          read: '书'
+        },
+        str: 'hello',
+        stars: [
+          {id: '1',name: '王瓜',age: 20},
+          {id: '2',name: '王番茄',age: 22},
+          {id: '3',name: '赵番',age: 14},
+          {id: '4',name: '瓜赵',age: 18},
+        ],
+        // fstars: [],
+        keyWord: '',
+        number: 0
+      },
+      methods: {
+        addPerson () {
+          this.person.unshift({id: '003',name: '王麻子',age: 40})
+        },
+        hehe () {
+          this.number = 1
+        }
+      },
+      computed: {
+        fstars () {
+          let arr = this.stars.filter(item => {
+            return item.name.indexOf(this.keyWord) !== -1
+          })
+          if (this.number) {
+            arr.sort((a,b) => {
+              return this.number == 1 ? a.age-b.age : b.age-a.age
+            })
+          }
+          return arr
+        }
+      }
+      //#region 
+      // watch: {
+      //   // keyWord () {
+      //   //   this.fstars = this.stars.filter(item => {
+      //   //     return item.name.indexOf(this.keyWord)
+      //   //   })
+      //   // }
+      //   keyWord: {
+      //     immediate: true,
+      //     handler () {
+      //       this.fstars = this.stars.filter(item => {
+      //         return item.name.indexOf(this.keyWord) !== -1
+      //       })
+      //     }
+      //   }
+      // }
+      //#endregion
+    })
+  </script>
+
+  
+</body>
+</html>
